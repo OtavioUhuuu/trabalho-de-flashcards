@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flashcards Interativos</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 600px;
+        width: 100%;
+      }
+
+      .titulo {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .flashcards {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .cartao {
+        background: white;
+        border-radius: 8px;
+        padding: 20px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .cartao:hover {
+        background-color: #e0e0e0;
+      }
+
+      .pergunta {
+        font-weight: bold;
+        margin: 0 0 10px 0;
+      }
+
+      .resposta {
+        margin: 0;
+        display: none;
+        color: #333;
+      }
+
+      .cartao.revelado .resposta {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container">
+      <h1 class="titulo">Flashcards</h1>
+      <div id="flashcards" class="flashcards"></div>
+    </main>
+
+    <script>
+      const dados = [
+        {
+          pergunta: "O que é HTML?",
+          resposta: "Linguagem de marcação usada para estruturar páginas web.",
+        },
+        {
+          pergunta: "O que é CSS?",
+          resposta: "Linguagem de estilo usada para personalizar o visual de páginas.",
+        },
+        {
+          pergunta: "O que é JavaScript?",
+          resposta: "Linguagem de programação usada para interatividade em sites.",
+        },
+      ];
+
+      const container = document.getElementById("flashcards");
+
+      dados.forEach((item) => {
+        const card = document.createElement("div");
+        card.className = "cartao";
+        card.innerHTML = `
+          <p class="pergunta">${item.pergunta}</p>
+          <p class="resposta">${item.resposta}</p>
+        `;
+        card.addEventListener("click", () => {
+          card.classList.toggle("revelado");
+        });
+        container.appendChild(card);
+      });
+    </script>
+  </body>
+</html>
